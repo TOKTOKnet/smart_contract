@@ -12,17 +12,17 @@ contract ForkDelta {
   using SafeMath for uint;
 
   /// Variables
-  address public admin; // the admin address
-  address public feeAccount; // the account that will receive fees
-  uint public feeTake; // percentage times (1 ether)
-  uint public freeUntilDate; // date in UNIX timestamp that trades will be free until
+  address public admin; // The admin address
+  address public feeAccount; // The account that will receive fees
+  uint public feeTake; // Percentage times (1 ether)
+  uint public freeUntilDate; // Date in UNIX timestamp that trades will be free until
   bool private depositingTokenFlag; // True when Token.transferFrom is being called from depositToken
-  mapping (address => mapping (address => uint)) public tokens; // mapping of token addresses to mapping of account balances (token=0 means Ether)
-  mapping (address => mapping (bytes32 => bool)) public orders; // mapping of user accounts to mapping of order hashes to booleans (true = submitted by user, equivalent to offchain signature)
-  mapping (address => mapping (bytes32 => uint)) public orderFills; // mapping of user accounts to mapping of order hashes to uints (amount of order that has been filled)
+  mapping (address => mapping (address => uint)) public tokens; // Mapping of token addresses to mapping of account balances (token=0 means Ether)
+  mapping (address => mapping (bytes32 => bool)) public orders; // Mapping of user accounts to mapping of order hashes to booleans (true = submitted by user, equivalent to offchain signature)
+  mapping (address => mapping (bytes32 => uint)) public orderFills; // Mapping of user accounts to mapping of order hashes to uints (amount of order that has been filled)
   address public predecessor; // Address of the previous version of this contract. If address(0), this is the first version
-  address public successor; // Address of the next version of this contract. If address(0), this is the most up to date version.
-  uint16 public version; // This is the version # of the contract
+  address public successor; // Address of the next version of this contract. If address(0), this is the most up to date version
+  uint16 public version; // The version # of the contract
 
   /// Logging Events
   event Order(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, address user);
